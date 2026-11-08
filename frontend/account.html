@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a33">
+    <title>Your account | MandhiszonTech</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/account.js" defer></script>
+</head>
+<body>
+    <main class="auth-view account-view">
+        <div class="auth-brand">
+            <a class="brand brand-light" href="index.html" aria-label="MandhiszonTech home">
+                <span class="brand-mark">M</span><span class="brand-name">mandhiszon<span>tech</span></span>
+            </a>
+        </div>
+        <div class="account-layout">
+            <section class="account-intro">
+                <p class="eyebrow">YOUR MANDHISZONTECH ACCOUNT</p>
+                <h1>Good ideas grow when we build together.</h1>
+                <p>Create an account to stay connected with MandhiszonTech.</p>
+                <a class="back-home-link" href="index.html">&larr; Back to the website</a>
+            </section>
+            <section class="login-card account-card">
+                <div class="account-tabs" role="tablist" aria-label="Account options">
+                    <button class="account-tab is-active" id="login-tab" type="button" role="tab" aria-selected="true" aria-controls="customer-login-panel">Sign in</button>
+                    <button class="account-tab" id="register-tab" type="button" role="tab" aria-selected="false" aria-controls="customer-register-panel">Create account</button>
+                </div>
+                <section id="customer-login-panel" role="tabpanel" aria-labelledby="login-tab">
+                    <div class="login-card-heading">
+                        <span class="login-icon" aria-hidden="true">M</span>
+                        <p class="eyebrow">WELCOME BACK</p>
+                        <h2>Sign in to your account</h2>
+                        <p>Use your customer account email and password.</p>
+                    </div>
+                    <form id="customer-login-form">
+                        <label class="field-label" for="login-email">Email address</label>
+                        <input id="login-email" name="email" type="email" autocomplete="username" required>
+                        <label class="field-label" for="login-password">Password</label>
+                        <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+                        <p class="form-message is-hidden" id="login-message" role="alert"></p>
+                        <button class="button button-primary" id="login-button" type="submit"><span>Sign in</span><span aria-hidden="true">&rarr;</span></button>
+                    </form>
+                </section>
+                <section id="customer-register-panel" class="is-hidden" role="tabpanel" aria-labelledby="register-tab">
+                    <div class="login-card-heading">
+                        <span class="login-icon" aria-hidden="true">M</span>
+                        <p class="eyebrow">JOIN OUR COMMUNITY</p>
+                        <h2>Create your account</h2>
+                        <p>It only takes a moment to get started.</p>
+                    </div>
+                    <form id="customer-register-form">
+                        <label class="field-label" for="register-name">Full name</label>
+                        <input id="register-name" name="name" type="text" maxlength="120" autocomplete="name" required>
+                        <label class="field-label" for="register-email">Email address</label>
+                        <input id="register-email" name="email" type="email" maxlength="254" autocomplete="email" required>
+                        <label class="field-label" for="register-password">Password</label>
+                        <input id="register-password" name="password" type="password" minlength="8" maxlength="72" autocomplete="new-password" required>
+                        <p class="password-hint">Use 8–72 characters.</p>
+                        <p class="form-message is-hidden" id="register-message" role="alert"></p>
+                        <button class="button button-primary" id="register-button" type="submit"><span>Create account</span><span aria-hidden="true">&rarr;</span></button>
+                    </form>
+                </section>
+                <p class="admin-login-link"><a href="login.html">Administrator? Go to admin sign in</a></p>
+            </section>
+        </div>
+        <p class="auth-copyright">&copy; <span id="current-year"></span> MandhiszonTech. All rights reserved.</p>
+    </main>
+</body>
+</html>
