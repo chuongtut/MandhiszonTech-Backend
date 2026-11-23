@@ -1,5 +1,5 @@
 (() => {
-    const API_BASE = "http://localhost:5000/api";
+    const API_BASE = window.MANDHISZONTECH_API_BASE || "http://localhost:5000/api";
     const TOKEN_KEY = "mandhiszontech_customer_token";
     const loginForm = document.getElementById("customer-login-form");
     const registerForm = document.getElementById("customer-register-form");

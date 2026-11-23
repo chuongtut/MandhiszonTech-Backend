@@ -1,5 +1,5 @@
 (() => {
-    const API_BASE = "http://localhost:5000/api";
+    const API_BASE = window.MANDHISZONTECH_API_BASE || "http://localhost:5000/api";
     const sections = {
         services: { endpoint: "/services", property: "services" },
         projects: { endpoint: "/projects", property: "projects" },

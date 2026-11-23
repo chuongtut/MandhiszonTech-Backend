@@ -34,6 +34,18 @@ const server = http.createServer((request, response) => {
         return;
     }
 
+    if (pathname === "/api-config.js") {
+        const apiBaseUrl = (process.env.API_BASE_URL || "http://localhost:5000/api").replace(/\/+$/, "");
+        const body = `window.MANDHISZONTECH_API_BASE = ${JSON.stringify(apiBaseUrl)};`;
+        response.writeHead(200, {
+            "Content-Length": Buffer.byteLength(body),
+            "Content-Type": "text/javascript; charset=utf-8",
+            "Cache-Control": "no-store"
+        });
+        response.end(request.method === "HEAD" ? undefined : body);
+        return;
+    }
+
     const relativePath = pathname === "/" ? "index.html" : pathname.replace(/^[/\\]+/, "");
     const filePath = path.resolve(root, relativePath);
     if (!filePath.startsWith(`${root}${path.sep}`)) {

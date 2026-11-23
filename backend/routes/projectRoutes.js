@@ -62,7 +62,11 @@ router.post("/upload-image", verifyAdmin, receiveProjectImage, async (req, res) 
     try {
         await fs.mkdir(projectImageDirectory, { recursive: true });
         await fs.writeFile(path.join(projectImageDirectory, filename), req.file.buffer, { flag: "wx" });
-        const apiOrigin = (process.env.PUBLIC_API_URL || `${req.protocol}://${req.get("host")}`).replace(/\/+$/, "");
+        const apiOrigin = (
+            process.env.PUBLIC_API_URL ||
+            process.env.RENDER_EXTERNAL_URL ||
+            `${req.protocol}://${req.get("host")}`
+        ).replace(/\/+$/, "");
         res.status(201).json({
             success: true,
             image_url: `${apiOrigin}/uploads/projects/${filename}`

@@ -1,6 +1,6 @@
 # MandhiszonTech admin dashboard
 
-This frontend contains the public MandhiszonTech website, customer sign-in/registration, and an administrator dashboard. It uses the API at `http://localhost:5000/api`. Update `API_BASE` in `js/login.js`, `js/account.js`, `js/public.js`, and `js/dashboard.js` if the backend URL changes.
+This frontend contains the public MandhiszonTech website, customer sign-in/registration, and an administrator dashboard. By default, it uses the local API at `http://localhost:5000/api`. The API address can be changed with `API_BASE_URL` when starting the frontend server.
 
 ## Run locally
 
@@ -18,6 +18,20 @@ This frontend contains the public MandhiszonTech website, customer sign-in/regis
    npm run dev
    ```
 3. Open `http://localhost:5501` for the public website. Visitors can create an account or sign in at `account.html`. Administrators sign in at `login.html`; the dashboard is at `dashboard.html`.
+
+## Deploy the backend to Render
+
+1. In Render, create a **Blueprint** from this repository and use the root `render.yaml` file. The blueprint creates the backend web service in Frankfurt.
+2. Set `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME`, and a strong `JWT_SECRET` in the service's environment settings. `DB_PORT` defaults to `3306`, and `FRONTEND_URL` is prefilled with the supplied Dev Tunnel URL. Use your existing MySQL provider's connection values; do not commit them to the repository. Make sure that provider allows connections from Render.
+3. Wait for the `/api/health` check to pass, then copy the service's public URL.
+4. Start the frontend server with that API URL (including `/api`). In PowerShell, from `frontend`:
+   ```powershell
+   $env:API_BASE_URL = "https://your-service.onrender.com/api"
+   npm run dev
+   ```
+   Restart the frontend server whenever `API_BASE_URL` changes. The supplied Dev Tunnel frontend URL is also set as `FRONTEND_URL` in the Render blueprint; update it in Render if the tunnel URL changes.
+
+Render's free web service has an ephemeral filesystem. Uploaded project images stored under `backend/uploads` can be lost when the service restarts or redeploys; use persistent/object storage before relying on uploaded images in production.
 
 To provision the administrator, set `ADMIN_PASSWORD` in the environment and run `npm run db:create-admin` from the backend directory. Admin and customer sessions use separate browser-session tokens; customer access cannot authenticate admin endpoints. Customer passwords are hashed before storage and customer tokens expire after two hours.
 

@@ -1,5 +1,5 @@
 (() => {
-    const API_BASE = "http://localhost:5000/api";
+    const API_BASE = window.MANDHISZONTECH_API_BASE || "http://localhost:5000/api";
     const TOKEN_KEY = "mandhiszontech_admin_token";
     const dashboard = document.querySelector(".dashboard-view");
     const navItems = Array.from(document.querySelectorAll(".nav-item"));

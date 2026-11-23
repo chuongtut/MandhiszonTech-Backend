@@ -12,7 +12,15 @@ const customerRoutes = require("./routes/customerRoutes");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://mandhiszontech.netlify.app",
+        "http://localhost:3000",
+        "http://localhost:5500",
+        "http://localhost:5501",
+        process.env.FRONTEND_URL
+    ].filter(Boolean)
+}));
 app.use(express.json({ limit: "2mb" }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads"), {
     dotfiles: "deny",
@@ -70,7 +78,7 @@ async function startServer() {
         return;
     }
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
         console.log(`MandhiszonTech API running on port ${PORT}`);
     });
 }
